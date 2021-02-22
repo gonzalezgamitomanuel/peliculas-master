@@ -16,14 +16,14 @@ exports.db = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 class DataBase {
     constructor() {
-        this._cadenaConexion = `mongodb+srv://manu:mimanuel1@cluster0.gdshf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+        this._cadenaConexion = `mongodb+srv://manu:mimanuel1@cluster0.gdshf.mongodb.net/peliculas?retryWrites=true&w=majority`;
         this.conectarBD = () => __awaiter(this, void 0, void 0, function* () {
             const promise = new Promise((resolve, reject) => __awaiter(this, void 0, void 0, function* () {
                 yield mongoose_1.default.connect(this._cadenaConexion, {
                     useNewUrlParser: true,
                     useUnifiedTopology: true,
                     useCreateIndex: true,
-                    useFindAndModify: false // para usar findOneAndDelete y findAndModify
+                    useFindAndModify: false
                 })
                     .then(() => resolve(`Conectado a ${this._cadenaConexion}`))
                     .catch((error) => reject(`Error conectando a ${this._cadenaConexion}: ${error}`));
@@ -38,6 +38,8 @@ class DataBase {
             }));
             return promise;
         });
+        // mongodb+srv://proyecto:proyecto@cluster0.7gnbs.mongodb.net/Refugios?retryWrites=true&w=majority
+        //mongodb+srv://liga:1234@cluster0.skwlq.mongodb.net/liga?retryWrites=true&w=majority
     }
     set cadenaConexion(_cadenaConexion) {
         this._cadenaConexion = _cadenaConexion;

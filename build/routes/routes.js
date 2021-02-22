@@ -96,14 +96,14 @@ class Routes {
             yield database_1.db.desconectarBD();
         });
         this.getActor = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const { pelicula, codigo } = req.params;
+            const { codigo, pelicula } = req.params;
             yield database_1.db.conectarBD()
                 .then(() => __awaiter(this, void 0, void 0, function* () {
-                const j = yield schemas_1.Actores.findOne({
+                const a = yield schemas_1.Actores.findOne({
                     codigo: codigo,
                     pelicula: pelicula
                 });
-                res.json(j);
+                res.json(a);
             }))
                 .catch((mensaje) => {
                 res.send(mensaje);
@@ -154,6 +154,23 @@ class Routes {
                 .catch((err) => res.send('Error: ' + err));
             yield database_1.db.desconectarBD();
         });
+        this.deleteActor = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { pelicula, codigo } = req.params;
+            yield database_1.db.conectarBD();
+            yield schemas_1.Actores.findOneAndDelete({ codigo: codigo, pelicula: pelicula }, (err, doc) => {
+                if (err)
+                    console.log(err);
+                else {
+                    if (doc == null) {
+                        res.send(`No encontrado`);
+                    }
+                    else {
+                        res.send('Actor eliminado: ' + doc);
+                    }
+                }
+            });
+            database_1.db.desconectarBD();
+        });
         this._router = express_1.Router();
     }
     get router() {
@@ -166,7 +183,8 @@ class Routes {
             this._router.post('/actor', this.postActor),
             this._router.get('/actor/:codigo&:pelicula', this.getActor),
             this._router.post('/actor/:codigo&:pelicula', this.updateActor),
-            this._router.post('/pelicula/:id', this.updatePelicula);
+            this._router.post('/pelicula/:id', this.updatePelicula),
+            this._router.get('/deleteActor/:codigo&:pelicula', this.deleteActor);
     }
 }
 const obj = new Routes();

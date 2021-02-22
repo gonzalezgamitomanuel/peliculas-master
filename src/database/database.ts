@@ -2,9 +2,10 @@ import mongoose from 'mongoose';
 
 class DataBase {
 
-    private _cadenaConexion: string = `mongodb+srv://manu:mimanuel1@cluster0.gdshf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+    private _cadenaConexion: string = `mongodb+srv://manu:mimanuel1@cluster0.gdshf.mongodb.net/peliculas?retryWrites=true&w=majority`
     constructor(){
-
+// mongodb+srv://proyecto:proyecto@cluster0.7gnbs.mongodb.net/Refugios?retryWrites=true&w=majority
+//mongodb+srv://liga:1234@cluster0.skwlq.mongodb.net/liga?retryWrites=true&w=majority
     }
     set cadenaConexion(_cadenaConexion: string){
         this._cadenaConexion = _cadenaConexion
@@ -15,8 +16,8 @@ class DataBase {
             await mongoose.connect(this._cadenaConexion, {
                 useNewUrlParser: true, 
                 useUnifiedTopology: true, 
-                useCreateIndex: true,   // Para que cree el índice único asociado al campo unique
-                useFindAndModify: false  // para usar findOneAndDelete y findAndModify
+                useCreateIndex: true,  
+                useFindAndModify: false
             })
             .then( () => resolve(`Conectado a ${this._cadenaConexion}`) )
             .catch( (error) => reject(`Error conectando a ${this._cadenaConexion}: ${error}`) ) 

@@ -24,5 +24,16 @@
     "express": "^4.17.1",
     "mongoose": "^5.11.17",
     "morgan": "^1.10.0"
-  }
+  },
+  "directories": {
+    "doc": "doc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gonzalezgamitomanuel/peliculas-master.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gonzalezgamitomanuel/peliculas-master/issues"
+  },
+  "homepage": "https://github.com/gonzalezgamitomanuel/peliculas-master#readme"
 }

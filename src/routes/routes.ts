@@ -79,7 +79,7 @@ class Routes {
     
     private postActor = async (req: Request, res: Response) => {
         const { codigo, nombre, pelicula, peliculasRealizadas, tiempoPantalla, 
-            vecesProtagonista, vecesAntagonista } = req.body
+        vecesProtagonista, vecesAntagonista } = req.body
         await db.conectarBD()
         const dSchema={
             codigo: codigo,
@@ -99,14 +99,14 @@ class Routes {
     
 
     private getActor = async (req:Request, res: Response) => {
-        const { pelicula, codigo } = req.params
+        const {  codigo,pelicula } = req.params
         await db.conectarBD()
         .then( async ()=> {
-            const j = await Actores.findOne({
+            const a = await Actores.findOne({
                 codigo: codigo,
                 pelicula: pelicula
             })
-            res.json(j)
+            res.json(a)
         })
         .catch((mensaje) => {
             res.send(mensaje)
@@ -116,16 +116,15 @@ class Routes {
 
 
     private updateActor = async (req: Request, res: Response) => {
-        const {codigo, pelicula} = req.params
-        const {  nombre, peliculasRealizadas, tiempoPantalla, vecesProtagonista, 
-            vecesAntagonista } = req.body
+        const {codigo,pelicula} = req.params
+        const { nombre, peliculasRealizadas, tiempoPantalla, vecesProtagonista, vecesAntagonista } = req.body
         await db.conectarBD()
         await Actores.findOneAndUpdate({
             codigo: codigo,
-            pelicula: pelicula
+            pelicula:pelicula
         },{
             codigo: codigo,
-            nombre: nombre,
+            nombre:nombre,
             pelicula: pelicula,
             peliculasRealizadas: peliculasRealizadas,
             tiempoPantalla: tiempoPantalla,
@@ -143,8 +142,7 @@ class Routes {
 
     private updatePelicula = async (req: Request, res: Response) => {
         const {id} =req.params
-        const {  nombre, recauentrada, numdias, sueldoactor, 
-        numeroactores } = req.body
+        const {  nombre,recauentrada,numdias,sueldoactor,numeroactores } = req.body
         await db.conectarBD()
         await Peliculas.findOneAndUpdate({
             id: id
@@ -164,6 +162,25 @@ class Routes {
             .catch( (err: any) => res.send('Error: '+ err)) 
         await db.desconectarBD()
     }
+
+
+    private deleteActor = async (req: Request, res: Response) => {
+        const { pelicula,codigo} = req.params
+        await db.conectarBD()
+        await Actores.findOneAndDelete(
+            { codigo: codigo,pelicula: pelicula}, 
+            (err: any, doc) => {
+                if(err) console.log(err)
+                else{
+                    if (doc == null) {
+                        res.send(`No encontrado`)
+                    }else {
+                        res.send('Actor eliminado: '+ doc)
+                    }
+                }
+            })
+        db.desconectarBD()
+    }
    
 
     misRutas(){
@@ -173,17 +190,14 @@ class Routes {
         this._router.post('/actor', this.postActor),
         this._router.get('/actor/:codigo&:pelicula', this.getActor),
         this._router.post('/actor/:codigo&:pelicula', this.updateActor),
-        this._router.post('/pelicula/:id', this.updatePelicula)
+        this._router.post('/pelicula/:id', this.updatePelicula),
+        this._router.get('/deleteActor/:codigo&:pelicula', this.deleteActor)
     }
 }
 
 const obj = new Routes()
 obj.misRutas()
 export const routes = obj.router
-
-
-
-
 
 
 

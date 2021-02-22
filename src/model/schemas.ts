@@ -13,18 +13,17 @@ const PeliculaSchema = new Schema({
 
 
 const ActorSchema = new Schema({
-    codigo: Number,
+    codigo: String,
     nombre: String,
     pelicula: String,
     peliculasRealizadas: Number,
     tiempoPantalla: Number,
-    vecesProtagonista:Number,
+    vecesProtagonista: Number,
     vecesAntagonista: Number
 },{
     collection:'actores'
 })
 
 
-
-export const Peliculas = model('peliculas', PeliculaSchema  )
-export const Actores = model('actores', ActorSchema  )
+export const Centros = model('peliculas', PeliculaSchema  )
+export const Animales = model('actores', ActorSchema  )
