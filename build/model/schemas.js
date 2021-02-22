@@ -7,10 +7,8 @@ const PeliculaSchema = new mongoose_1.Schema({
     nombre: String,
     recauentrada: Number,
     numdias: Number,
-    recauotros: Number,
-    gastos: Number,
-    sueldoempleado: Number,
-    numeroempleados: Number,
+    sueldoactor: Number,
+    numeroactores: Number,
     numpers: Number
 }, {
     collection: 'peliculas'

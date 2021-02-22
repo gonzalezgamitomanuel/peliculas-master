@@ -61,18 +61,15 @@ class Routes {
             yield database_1.db.desconectarBD();
         });
         this.postPelicula = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const { id, nombre, recauentrada, numdias, recauotros, gastos, sueldoempleado, numeroempleados, numpers } = req.body;
+            const { id, nombre, recauentrada, numdias, sueldoactor, numeroactores } = req.body;
             yield database_1.db.conectarBD();
             const dSchema = {
                 id: id,
                 nombre: nombre,
                 recauentrada: recauentrada,
                 numdias: numdias,
-                recauotros: recauotros,
-                gastos: gastos,
-                sueldoempleado: sueldoempleado,
-                numeroempleados: numeroempleados,
-                numpers: numpers
+                sueldoactor: sueldoactor,
+                numeroactores: numeroactores
             };
             const oSchema = new schemas_1.Peliculas(dSchema);
             yield oSchema.save()
@@ -138,7 +135,7 @@ class Routes {
         });
         this.updatePelicula = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const { nombre, recauentrada, numdias, recauotros, gastos, sueldoempleado, numeroempleados, numpers } = req.body;
+            const { nombre, recauentrada, numdias, sueldoactor, numeroactores } = req.body;
             yield database_1.db.conectarBD();
             yield schemas_1.Peliculas.findOneAndUpdate({
                 id: id
@@ -147,11 +144,8 @@ class Routes {
                 nombre: nombre,
                 recauentrada: recauentrada,
                 numdias: numdias,
-                recauotros: recauotros,
-                gastos: gastos,
-                sueldoempleado: sueldoempleado,
-                numeroempleados: numeroempleados,
-                numpers: numpers
+                sueldoempleado: sueldoactor,
+                numeroempleados: numeroactores
             }, {
                 new: true,
                 runValidators: true
@@ -159,25 +153,6 @@ class Routes {
                 .then((doc) => res.send(doc))
                 .catch((err) => res.send('Error: ' + err));
             yield database_1.db.desconectarBD();
-        });
-        this.deleteActor = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const { codigo, pelicula } = req.params;
-            yield database_1.db.conectarBD();
-            yield schemas_1.Actores.findOneAndDelete({ codigo: codigo,
-                pelicula: pelicula
-            }, (err, doc) => {
-                if (err)
-                    console.log(err);
-                else {
-                    if (doc == null) {
-                        res.send(`No encontrado`);
-                    }
-                    else {
-                        res.send('Borrado correcto: ' + doc);
-                    }
-                }
-            });
-            database_1.db.desconectarBD();
         });
         this._router = express_1.Router();
     }
@@ -191,8 +166,7 @@ class Routes {
             this._router.post('/actor', this.postActor),
             this._router.get('/actor/:codigo&:pelicula', this.getActor),
             this._router.post('/actor/:codigo&:pelicula', this.updateActor),
-            this._router.post('/pelicula/:id', this.updatePelicula),
-            this._router.get('/deleteActor/:codigo&:pelicula', this.deleteActor);
+            this._router.post('/pelicula/:id', this.updatePelicula);
     }
 }
 const obj = new Routes();
