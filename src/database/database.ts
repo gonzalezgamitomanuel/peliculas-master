@@ -4,8 +4,7 @@ class DataBase {
 
     private _cadenaConexion: string = `mongodb+srv://manu:mimanuel1@cluster0.gdshf.mongodb.net/peliculas?retryWrites=true&w=majority`
     constructor(){
-// mongodb+srv://proyecto:proyecto@cluster0.7gnbs.mongodb.net/Refugios?retryWrites=true&w=majority
-//mongodb+srv://liga:1234@cluster0.skwlq.mongodb.net/liga?retryWrites=true&w=majority
+    
     }
     set cadenaConexion(_cadenaConexion: string){
         this._cadenaConexion = _cadenaConexion

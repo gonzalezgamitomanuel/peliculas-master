@@ -38,8 +38,6 @@ class DataBase {
             }));
             return promise;
         });
-        // mongodb+srv://proyecto:proyecto@cluster0.7gnbs.mongodb.net/Refugios?retryWrites=true&w=majority
-        //mongodb+srv://liga:1234@cluster0.skwlq.mongodb.net/liga?retryWrites=true&w=majority
     }
     set cadenaConexion(_cadenaConexion) {
         this._cadenaConexion = _cadenaConexion;
