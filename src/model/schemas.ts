@@ -25,5 +25,5 @@ const ActorSchema = new Schema({
 })
 
 
-export const Centros = model('peliculas', PeliculaSchema  )
-export const Animales = model('actores', ActorSchema  )
+export const Peliculas = model('peliculas', PeliculaSchema  )
+export const Actores = model('actores', ActorSchema  )
