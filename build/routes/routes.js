@@ -144,8 +144,8 @@ class Routes {
                 nombre: nombre,
                 recauentrada: recauentrada,
                 numdias: numdias,
-                sueldoempleado: sueldoactor,
-                numeroempleados: numeroactores
+                sueldoactor: sueldoactor,
+                numeroactores: numeroactores
             }, {
                 new: true,
                 runValidators: true

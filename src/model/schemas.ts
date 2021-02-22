@@ -7,7 +7,6 @@ const PeliculaSchema = new Schema({
     numdias: Number,
     sueldoactor: Number,
     numeroactores: Number,
-    numpers: Number
 },{
     collection:'peliculas'
 })
