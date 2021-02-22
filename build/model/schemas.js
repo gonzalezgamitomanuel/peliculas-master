@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Animales = exports.Centros = void 0;
+exports.Actores = exports.Peliculas = void 0;
 const mongoose_1 = require("mongoose");
 const PeliculaSchema = new mongoose_1.Schema({
     id: String,
@@ -23,5 +23,5 @@ const ActorSchema = new mongoose_1.Schema({
 }, {
     collection: 'actores'
 });
-exports.Centros = mongoose_1.model('peliculas', PeliculaSchema);
-exports.Animales = mongoose_1.model('actores', ActorSchema);
+exports.Peliculas = mongoose_1.model('peliculas', PeliculaSchema);
+exports.Actores = mongoose_1.model('actores', ActorSchema);
