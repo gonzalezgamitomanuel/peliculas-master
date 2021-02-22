@@ -8,7 +8,7 @@ const PeliculaSchema = new mongoose_1.Schema({
     recauentrada: Number,
     numdias: Number,
     sueldoactor: Number,
-    numeroactores: Number,
+    numeroactores: Number
 }, {
     collection: 'peliculas'
 });

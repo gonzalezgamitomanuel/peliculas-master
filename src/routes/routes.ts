@@ -60,8 +60,7 @@ class Routes {
     }
 
     private postPelicula = async (req: Request, res: Response) => {
-        const { id, nombre, recauentrada, numdias, sueldoactor, 
-        numeroactores } = req.body
+        const { id, nombre, recauentrada, numdias, sueldoactor, numeroactores } = req.body
         await db.conectarBD()
         const dSchema={
             id: id,
