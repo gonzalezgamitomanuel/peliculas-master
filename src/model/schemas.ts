@@ -13,7 +13,7 @@ const PeliculaSchema = new Schema({
 
 
 const ActorSchema = new Schema({
-    codigo: String,
+    codigo: Number,
     nombre: String,
     pelicula: String,
     peliculasRealizadas: Number,
