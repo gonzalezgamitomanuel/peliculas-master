@@ -13,7 +13,7 @@ const PeliculaSchema = new mongoose_1.Schema({
     collection: 'peliculas'
 });
 const ActorSchema = new mongoose_1.Schema({
-    codigo: Number,
+    codigo: String,
     nombre: String,
     pelicula: String,
     peliculasRealizadas: Number,
