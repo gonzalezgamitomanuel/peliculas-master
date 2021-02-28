@@ -121,7 +121,7 @@ class Routes {
         await db.conectarBD()
         await Actores.findOneAndUpdate({
             codigo: codigo,
-            pelicula:pelicula
+            pelicula: pelicula
         },{
             codigo: codigo,
             nombre:nombre,
@@ -168,7 +168,7 @@ class Routes {
         const { pelicula,codigo} = req.params
         await db.conectarBD()
         await Actores.findOneAndDelete(
-            { codigo: codigo,pelicula: pelicula}, 
+            { codigo: codigo, pelicula: pelicula}, 
             (err: any, doc) => {
                 if(err) console.log(err)
                 else{
